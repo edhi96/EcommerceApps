@@ -58,7 +58,7 @@ class LoginFragment : Fragment() {
             } else {
                 Toast.makeText(
                     requireContext(),
-                    getString(R.string.you_must_fill_all_data), Toast.LENGTH_LONG
+                    getString(R.string.you_must_fill_all_data), Toast.LENGTH_SHORT
                 ).show()
             }
         }
@@ -75,7 +75,7 @@ class LoginFragment : Fragment() {
                 navigateToHomeScreen()
             }
             if (state is UiState.Error) {
-                Toast.makeText(requireContext(), state.error, Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), state.error, Toast.LENGTH_SHORT).show()
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 

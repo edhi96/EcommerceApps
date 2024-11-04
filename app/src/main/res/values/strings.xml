@@ -19,8 +19,12 @@
     <string name="you_must_fill_all_data">You Must Fill All Data</string>
     <string name="ecommerce_apps">Ecommerce Apps</string>
     <string name="add_to_cart">Add to Cart</string>
+    <string name="checkout">Checkout</string>
     <string name="image_profile">Image Profile</string>
     <string name="home">Home</string>
     <string name="product_detail">Product Detail</string>
     <string name="my_profile">My Profile</string>
+    <string name="cart">Cart</string>
+    <string name="cart_empty">Cart Empty</string>
+    <string name="success_updated_cart">Success Updated Cart</string>
 </resources>

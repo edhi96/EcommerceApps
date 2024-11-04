@@ -28,4 +28,10 @@ object DatabaseModule {
         return appDatabase.productDao()
     }
 
+    @Provides
+    @Singleton
+    fun provideCartDao(appDatabase: AppDatabase): CartDao {
+        return appDatabase.cartDao()
+    }
+
 }

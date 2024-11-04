@@ -1,11 +1,10 @@
-package tia.sarwoedhi.ecommerce.core.mapper
+package tia.sarwoedhi.ecommerce.core.mapper.product
 
-import tia.sarwoedhi.ecommerce.core.local.product.model.TableProduct
+import tia.sarwoedhi.ecommerce.core.local.product.model.response.TableProduct
 import tia.sarwoedhi.ecommerce.core.remote.model.product.request.ProductDetailParam
 import tia.sarwoedhi.ecommerce.core.remote.model.product.response.ProductDto
 import tia.sarwoedhi.ecommerce.domain.product.model.request.ProductDetailReq
 import tia.sarwoedhi.ecommerce.domain.product.model.response.ProductEntity
-
 
 fun ProductDto?.toDomain() = ProductEntity(
     id = this?.id ?: 0,
@@ -19,7 +18,7 @@ fun ProductDto?.toDomain() = ProductEntity(
 fun List<ProductDto>?.toDomain() = this?.map(ProductDto::toDomain)
 
 fun ProductDto?.toTableProduct() = TableProduct(
-    id = (this?.id ?: 0).toString(),
+    id = (this?.id ?: 0),
     category = this?.category.orEmpty(),
     image = this?.image.orEmpty(),
     description = this?.description.orEmpty(),
@@ -30,7 +29,7 @@ fun ProductDto?.toTableProduct() = TableProduct(
 fun List<ProductDto>?.toTableProduct() = this?.map(ProductDto::toTableProduct)
 
 fun TableProduct?.toDomainProduct() = ProductEntity(
-    id = this?.id?.toIntOrNull() ?: 0,
+    id = this?.id ?: 0,
     category = this?.category.orEmpty(),
     image = this?.image.orEmpty(),
     description = this?.description.orEmpty(),
@@ -39,7 +38,6 @@ fun TableProduct?.toDomainProduct() = ProductEntity(
 )
 
 fun List<TableProduct>?.toDomainProduct() = this?.map(TableProduct::toDomainProduct)
-
 
 fun ProductDetailReq.toParam(): ProductDetailParam {
     return ProductDetailParam(

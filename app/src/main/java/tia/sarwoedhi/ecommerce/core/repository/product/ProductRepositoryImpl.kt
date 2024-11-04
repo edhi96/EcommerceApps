@@ -6,10 +6,10 @@ import kotlinx.coroutines.withContext
 import tia.sarwoedhi.ecommerce.core.base.DataResult
 import tia.sarwoedhi.ecommerce.core.dispatcher.IoDispatcher
 import tia.sarwoedhi.ecommerce.core.local.product.source.ProductLocalDataSource
-import tia.sarwoedhi.ecommerce.core.mapper.toDomain
-import tia.sarwoedhi.ecommerce.core.mapper.toDomainProduct
-import tia.sarwoedhi.ecommerce.core.mapper.toParam
-import tia.sarwoedhi.ecommerce.core.mapper.toTableProduct
+import tia.sarwoedhi.ecommerce.core.mapper.product.toDomain
+import tia.sarwoedhi.ecommerce.core.mapper.product.toDomainProduct
+import tia.sarwoedhi.ecommerce.core.mapper.product.toParam
+import tia.sarwoedhi.ecommerce.core.mapper.product.toTableProduct
 import tia.sarwoedhi.ecommerce.core.remote.source.product.ProductNetworkSource
 import tia.sarwoedhi.ecommerce.domain.DomainWrapper
 import tia.sarwoedhi.ecommerce.domain.product.model.request.ProductDetailReq

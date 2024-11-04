@@ -56,12 +56,12 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() 
         fun bind(data: ProductEntity) {
             binding.txtTitle.text = data.title
             binding.txtCategoryName.text = data.category
-            binding.txtOverview.text = data.description
             binding.txtPrice.text = itemView.context.getString(R.string.price, data.price.toString())
             binding.labelImgNotAvailable.isVisible = data.image.isBlank()
             val image = data.image.ifBlank { R.drawable.shape_img_not_available }
             Glide.with(binding.root.context)
                 .load(image)
+                .placeholder(R.drawable.shape_img_not_available)
                 .into(binding.imgProduct)
         }
     }

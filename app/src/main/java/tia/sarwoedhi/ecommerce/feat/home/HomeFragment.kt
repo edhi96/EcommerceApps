@@ -54,6 +54,9 @@ class HomeFragment : Fragment() {
 
     private fun initView() {
         binding.topAppBar.lblTopBar.text = getString(R.string.home)
+        binding.topAppBar.imgCart.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_homeFragment_to_CartFragment)
+        }
         binding.topAppBar.imgProfile.setOnClickListener {
             ProfileDialogFragment.newInstance().apply {
                 show(this@HomeFragment.childFragmentManager, javaClass.simpleName)
@@ -129,7 +132,7 @@ class HomeFragment : Fragment() {
 
             is UiState.Error -> {
                 showLoading(false)
-                Toast.makeText(requireContext(), resource.error, Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), resource.error, Toast.LENGTH_SHORT).show()
             }
 
             is UiState.Loading -> {
@@ -153,7 +156,7 @@ class HomeFragment : Fragment() {
 
             is UiState.Error -> {
                 showLoading(false)
-                Toast.makeText(requireContext(), resource.error, Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), resource.error, Toast.LENGTH_SHORT).show()
             }
 
             is UiState.Loading -> {

@@ -7,8 +7,8 @@ import kotlinx.coroutines.withContext
 import tia.sarwoedhi.ecommerce.core.base.DataResult
 import tia.sarwoedhi.ecommerce.core.dispatcher.IoDispatcher
 import tia.sarwoedhi.ecommerce.core.local.data_store_local.DataStoreInterface
-import tia.sarwoedhi.ecommerce.core.mapper.toDomain
-import tia.sarwoedhi.ecommerce.core.mapper.toRequest
+import tia.sarwoedhi.ecommerce.core.mapper.user.toDomain
+import tia.sarwoedhi.ecommerce.core.mapper.user.toRequest
 import tia.sarwoedhi.ecommerce.core.remote.source.auth.AuthNetworkSource
 import tia.sarwoedhi.ecommerce.domain.DomainWrapper
 import tia.sarwoedhi.ecommerce.domain.auth.model.request.LoginRequest

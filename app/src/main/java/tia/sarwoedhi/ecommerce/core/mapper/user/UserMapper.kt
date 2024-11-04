@@ -1,4 +1,4 @@
-package tia.sarwoedhi.ecommerce.core.mapper
+package tia.sarwoedhi.ecommerce.core.mapper.user
 
 import tia.sarwoedhi.ecommerce.core.remote.model.auth.request.LoginRequestDto
 import tia.sarwoedhi.ecommerce.core.remote.model.auth.response.TokenDto
@@ -10,6 +10,7 @@ import tia.sarwoedhi.ecommerce.domain.auth.model.response.UserEntity
 
 fun UserDto?.toDomain(): UserEntity {
     return UserEntity(
+        id = this?.id ?: 0,
         email = this?.email.orEmpty(),
         username = this?.username.orEmpty(),
         name = "${this?.name?.firstname.orEmpty()} ${this?.name?.lastname.orEmpty()}",
