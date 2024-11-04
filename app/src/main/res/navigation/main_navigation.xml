@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="tia.sarwoedhi.ecommerce.feat.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_toLoginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpToSaveState="false" />
+
+        <action
+            android:id="@+id/action_splashFragment_toHomeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpToSaveState="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="tia.sarwoedhi.ecommerce.feat.auth.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_toHomeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpToSaveState="false" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="tia.sarwoedhi.ecommerce.feat.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_homeFragment_to_LoginFragment"
+            app:destination="@id/loginFragment" />
+
+        <action
+            android:id="@+id/action_homeFragment_to_ProductDetailFragment"
+            app:destination="@id/productDetailFragment"
+            app:popUpToSaveState="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="tia.sarwoedhi.ecommerce.feat.product_detail.ProductDetailFragment"
+        android:label="fragment_product_detail"
+        app:popUpTo="@id/homeFragment"
+        app:popUpToInclusive="true"
+        tools:layout="@layout/fragment_product_detail">
+
+        <action
+            android:id="@+id/action_productDetailFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+
+    </fragment>
+
+</navigation>

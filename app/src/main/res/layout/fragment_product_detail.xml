@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/topAppBar"
+        layout="@layout/top_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgProduct"
+        android:layout_width="match_parent"
+        android:layout_height="275dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/image_is_not_available"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topAppBar" />
+
+    <TextView
+        android:id="@+id/labelImgNotAvailable"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:lines="2"
+        android:text="@string/image_is_not_available"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imgProduct"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imgProduct"
+        tools:ignore="RtlCompat" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/bg_white_rounded"
+        android:elevation="20dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgProduct">
+
+        <TextView
+            android:id="@+id/txtTitle"
+            style="@style/ListTitleStyle"
+            android:layout_width="0dp"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Title" />
+
+        <TextView
+            android:id="@+id/txtCategoryName"
+            style="@style/ListTitleStyle"
+            android:layout_marginTop="10dp"
+            android:text="@string/dash_for_null"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="@id/txtTitle"
+            app:layout_constraintTop_toBottomOf="@id/txtTitle"
+            tools:text="Category" />
+
+        <TextView
+            android:id="@+id/txtPrice"
+            style="@style/ListTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:lines="2"
+            android:text="@string/not_available_yet"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtCategoryName"
+            tools:text="Rp" />
+
+        <TextView
+            android:id="@+id/txtOverview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:lineSpacingExtra="3dp"
+            android:lines="2"
+            android:text="@string/not_available_yet"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtPrice"
+            tools:text="Method does not have to physically delete rows from your data storage. If you are using a sync adapter with your provider, you should consider marking a deleted row with a delete flag rather than removing the row entirely. The sync adapter can check for deleted rows and remove them from the server before deleting them from the provider" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAddCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bg_button_rounded"
+            android:text="@string/add_to_cart"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

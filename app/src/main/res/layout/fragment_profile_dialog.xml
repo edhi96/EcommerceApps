@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <View
+        android:id="@+id/viewTopBar"
+        android:layout_width="50dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/viewTopBar2"
+        android:layout_width="50dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewTopBar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/white"
+        android:elevation="20dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewTopBar2">
+
+        <TextView
+            android:id="@+id/txtProfile"
+            style="@style/ListTitleStyle"
+            android:layout_width="0dp"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@string/my_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Name" />
+
+        <TextView
+            android:id="@+id/txtName"
+            style="@style/ListTitleStyle"
+            android:layout_width="0dp"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtProfile"
+            tools:text="Name" />
+
+        <TextView
+            android:id="@+id/txtEmail"
+            style="@style/ListTitleStyle"
+            android:layout_width="0dp"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtName"
+            tools:text="Email" />
+
+        <TextView
+            android:id="@+id/txtPhone"
+            style="@style/ListTitleStyle"
+            android:layout_marginTop="10dp"
+
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtEmail"
+            tools:text="Phone" />
+
+        <TextView
+            android:id="@+id/txtUserName"
+            style="@style/ListTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtPhone"
+            tools:text="UserName" />
+
+
+        <TextView
+            android:id="@+id/txtCity"
+            style="@style/ListTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtUserName"
+            tools:text="City" />
+
+        <TextView
+            android:id="@+id/txtStreet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:lineSpacingExtra="3dp"
+            android:lines="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtCity"
+            tools:text="Method does not have to physically delete rows from your data storage. If you are using a sync adapter with your provider, you should consider marking a deleted row with a delete flag rather than removing the row entirely. The sync adapter can check for deleted rows and remove them from the server before deleting them from the provider" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

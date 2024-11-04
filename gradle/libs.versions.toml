@@ -1,0 +1,79 @@
+[versions]
+agp = "8.5.2"
+kotlin = "2.0.21"
+coreKtx = "1.13.1"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+appcompat = "1.7.0"
+material = "1.12.0"
+activity = "1.9.3"
+constraintlayout = "2.2.0"
+hilt = "2.52"
+okhttp = "4.12.0"
+retrofit = "2.9.0"
+ksp = "2.0.21-1.0.26"
+navHostKtx = "2.8.3"
+lifecycle = "2.8.7"
+chucker = "4.0.0"
+roomAndroid = "2.6.1"
+coroutines = "1.8.0"
+safeArgument = "2.8.3"
+dataStore = "1.1.1"
+kotlinSerialization = "1.6.0"
+retrofitSerialization = "1.0.0"
+glide = "4.15.1"
+paging3 = "3.0.0"
+pagingCommonAndroid = "3.3.2"
+legacySupportV4 = "1.0.0"
+recyclerview = "1.3.2"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+glide = { module = "com.github.bumptech.glide:glide", name = "glide", version.ref = "glide" }
+paging3 = { module = "androidx.paging:paging-runtime-ktx", name = "glide", version.ref = "paging3" }
+
+
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+nav-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navHostKtx" }
+nav-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navHostKtx" }
+view-model-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+chucker = { module = "com.github.chuckerteam.chucker:library", version.ref = "chucker" }
+chucker-noop = { module = "com.github.chuckerteam.chucker:library-no-op", version.ref = "chucker" }
+room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomAndroid" }
+room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomAndroid" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomAndroid" }
+coroutine-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+coroutine-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "dataStore" }
+
+#networking
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinSerialization" }
+retrofit-serialization = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofitSerialization" }
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+okhttp-logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
+androidx-paging-common-android = { group = "androidx.paging", name = "paging-common-android", version.ref = "pagingCommonAndroid" }
+androidx-legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support-v4", version.ref = "legacySupportV4" }
+androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+hilt-gradle = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+safe-arguments = { id = "androidx.navigation.safeargs", version.ref = "safeArgument" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+
+
+[bundles]
+networking = ["retrofit", "retrofit-serialization",  "kotlin-serialization-json", "okhttp", "okhttp-logging-interceptor"]
