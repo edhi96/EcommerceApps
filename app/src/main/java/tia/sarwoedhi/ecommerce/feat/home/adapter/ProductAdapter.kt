@@ -24,6 +24,7 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() 
 
     fun clearData(){
         productList.clear()
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(
@@ -46,7 +47,7 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() 
 
     fun updateData(list: List<ProductEntity>) {
         productList.addAll(list)
-        notifyItemInserted(productList.size)
+        notifyDataSetChanged()
     }
 
     inner class ProductViewHolder(

@@ -62,7 +62,7 @@ class HomeFragment : Fragment() {
         categoryAdapter = CategoryAdapter()
         categoryAdapter.setOnItemClickCallback(object : OnCategoryClickCallback {
             override fun onCategoryClicked(data: String) {
-                val listProductSorted = productAdapter.getDataProduct().sortedBy { it.category }
+                val listProductSorted = productAdapter.getDataProduct().sortedByDescending { it.category == data }
                 productAdapter.clearData()
                 productAdapter.updateData(listProductSorted)
             }
