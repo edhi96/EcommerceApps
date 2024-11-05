@@ -13,11 +13,19 @@
         <action
             android:id="@+id/action_splashFragment_toLoginFragment"
             app:destination="@id/loginFragment"
+            app:enterAnim="@anim/animation_fade_in"
+            app:exitAnim="@anim/wait_anim"
+            app:popEnterAnim="@anim/wait_anim"
+            app:popExitAnim="@anim/animation_fade_out"
             app:popUpToSaveState="false" />
 
         <action
             android:id="@+id/action_splashFragment_toHomeFragment"
             app:destination="@id/homeFragment"
+            app:enterAnim="@anim/animation_fade_in"
+            app:exitAnim="@anim/wait_anim"
+            app:popEnterAnim="@anim/wait_anim"
+            app:popExitAnim="@anim/animation_fade_out"
             app:popUpToSaveState="false" />
     </fragment>
 
@@ -29,6 +37,10 @@
         <action
             android:id="@+id/action_loginFragment_toHomeFragment"
             app:destination="@id/homeFragment"
+            app:enterAnim="@anim/animation_fade_in"
+            app:exitAnim="@anim/wait_anim"
+            app:popEnterAnim="@anim/wait_anim"
+            app:popExitAnim="@anim/animation_fade_out"
             app:popUpToSaveState="false" />
 
     </fragment>
@@ -41,18 +53,27 @@
 
         <action
             android:id="@+id/action_homeFragment_to_LoginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/animation_fade_in"
+            app:exitAnim="@anim/animation_fade_out"
+            app:popEnterAnim="@anim/animation_fade_in"
+            app:popExitAnim="@anim/animation_fade_out" />
 
         <action
             android:id="@+id/action_homeFragment_to_ProductDetailFragment"
             app:destination="@id/productDetailFragment"
-            app:popUpToSaveState="true" />
+            app:enterAnim="@anim/animation_fade_in"
+            app:exitAnim="@anim/wait_anim"
+            app:popEnterAnim="@anim/wait_anim"
+            app:popExitAnim="@anim/animation_fade_out" />
 
         <action
             android:id="@+id/action_homeFragment_to_CartFragment"
             app:destination="@id/cartFragment"
-            app:popUpToSaveState="true" />
-
+            app:enterAnim="@anim/animation_fade_in"
+            app:exitAnim="@anim/wait_anim"
+            app:popEnterAnim="@anim/wait_anim"
+            app:popExitAnim="@anim/animation_fade_out"/>
 
     </fragment>
 
@@ -66,11 +87,19 @@
 
         <action
             android:id="@+id/action_productDetailFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/animation_fade_in"
+            app:exitAnim="@anim/wait_anim"
+            app:popEnterAnim="@anim/wait_anim"
+            app:popExitAnim="@anim/animation_fade_out"/>
 
         <action
             android:id="@+id/action_productDetailFragment_to_cartFragment"
-            app:destination="@id/cartFragment" />
+            app:destination="@id/cartFragment"
+            app:enterAnim="@anim/animation_fade_in"
+            app:exitAnim="@anim/wait_anim"
+            app:popEnterAnim="@anim/wait_anim"
+            app:popExitAnim="@anim/animation_fade_out"/>
 
     </fragment>
 
@@ -82,13 +111,6 @@
         app:popUpToInclusive="true"
         tools:layout="@layout/fragment_cart">
 
-        <action
-            android:id="@+id/action_cartFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-
-        <action
-            android:id="@+id/action_cartFragment_to_productDetailFragment"
-            app:destination="@id/productDetailFragment" />
     </fragment>
 
 </navigation>

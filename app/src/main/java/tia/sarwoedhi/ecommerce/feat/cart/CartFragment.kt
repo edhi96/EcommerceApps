@@ -49,7 +49,7 @@ class CartFragment : Fragment() {
 
     private fun initAction() {
         binding.topAppBar.imgBack.setOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigateUp()
         }
     }
 

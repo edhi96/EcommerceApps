@@ -59,7 +59,7 @@ class ProductDetailFragment : Fragment() {
 
     private fun initAction() {
         binding.topAppBar.imgBack.setOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigateUp()
         }
         binding.topAppBar.imgProfile.setOnClickListener {
             ProfileDialogFragment.newInstance().apply {
