@@ -98,10 +98,10 @@ class CartFragment : Fragment() {
             binding.progressBar.isVisible = state is UiState.Loading
             if (state is UiState.Success) {
                 if (state.data?.isNotEmpty() == true) {
-                    binding.btnCheckout.isEnabled = true
+                    binding.btnCheckout.isVisible = true
                     adapterCart.updateData(state.data)
                 } else {
-                    binding.btnCheckout.isEnabled = false
+                    binding.btnCheckout.isVisible = false
                     Toast.makeText(
                         requireContext(),
                         getString(R.string.cart_empty), Toast.LENGTH_LONG
