@@ -116,4 +116,18 @@ constructor(
                 return@withContext DomainWrapper.Error(e.localizedMessage)
             }
         }
+
+    override suspend fun deleteAllCart(): DomainWrapper<Unit> =
+        withContext(ioDispatcher) {
+            return@withContext try {
+                when (val result =   localDataSource.deleteAll()) {
+                    is DataResult.Error -> return@withContext DomainWrapper.Error(result.exception?.message)
+                    is DataResult.Success -> {
+                        DomainWrapper.Success(Unit)
+                    }
+                }
+            } catch (e: Exception) {
+                return@withContext DomainWrapper.Error(e.localizedMessage)
+            }
+        }
 }

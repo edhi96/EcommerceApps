@@ -14,5 +14,7 @@ interface CartLocalDataSource {
 
     suspend fun deleteCart(productId: Int) : DataResult<Unit>
 
+    suspend fun deleteAll() : DataResult<Unit>
+
     suspend fun selectByProductId(productId: Int): DataResult<TableCart>
 }

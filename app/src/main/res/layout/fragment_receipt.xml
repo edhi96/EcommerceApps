@@ -15,34 +15,58 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCart"
+    <TextView
+        android:id="@+id/txtOrderDate"
+        style="@style/ListTitleStyle"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="10dp"
-        android:clipToPadding="false"
-        android:paddingBottom="10dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/btnCheckout"
+        android:text="@string/dash_for_null"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topAppBar"
+        app:layout_constraintTop_toBottomOf="@+id/topAppBar"
+        tools:text="OrderDate" />
+
+    <TextView
+        android:id="@+id/txtTotalAmount"
+        style="@style/ListTitleStyle"
+        android:layout_width="0dp"
+        android:text="@string/dash_for_null"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOrderDate"
+        tools:text="Category" />
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvOrder"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginVertical="10dp"
+        android:clipToPadding="false"
+        android:paddingBottom="10dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/btnCompleted"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtTotalAmount"
         app:spanCount="2"
         tools:itemCount="11"
-        tools:listitem="@layout/item_product" />
+        tools:listitem="@layout/item_cart" />
+
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnCheckout"
+        android:id="@+id/btnCompleted"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_button_rounded"
-        android:text="@string/checkout"
+        android:text="@string/Completed"
         android:textColor="@color/white"
         android:textSize="20sp"
-        android:enabled="false"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvCart" />
+        app:layout_constraintTop_toBottomOf="@+id/rvOrder" />
 
     <ProgressBar
         android:id="@+id/progressBar"

@@ -27,4 +27,8 @@
     <string name="cart">Cart</string>
     <string name="cart_empty">Cart Empty</string>
     <string name="success_updated_cart">Success Updated Cart</string>
+    <string name="order_success">Thanks for your Order!</string>
+    <string name="Completed">Completed</string>
+    <string name="order_time">Order Time: %1$s</string>
+    <string name="total_amount">Total Amount: %1$s</string>
 </resources>

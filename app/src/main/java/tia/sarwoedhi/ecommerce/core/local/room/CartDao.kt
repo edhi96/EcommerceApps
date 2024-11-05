@@ -25,4 +25,7 @@ interface CartDao {
     @Query("DELETE FROM tbl_cart WHERE productId=:productId")
     suspend fun deleteCart(productId:Int)
 
+    @Query("DELETE FROM tbl_cart")
+    suspend fun deleteAll()
+
 }

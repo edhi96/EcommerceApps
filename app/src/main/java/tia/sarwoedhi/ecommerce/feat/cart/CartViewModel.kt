@@ -10,15 +10,21 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import tia.sarwoedhi.ecommerce.core.util.UiState
 import tia.sarwoedhi.ecommerce.domain.DomainWrapper
 import tia.sarwoedhi.ecommerce.domain.auth.usecase.GetProfileUseCase
 import tia.sarwoedhi.ecommerce.domain.cart.model.request.CartProductEntity
 import tia.sarwoedhi.ecommerce.domain.cart.model.request.CartRequestEntity
 import tia.sarwoedhi.ecommerce.domain.cart.model.response.CartEntity
+import tia.sarwoedhi.ecommerce.domain.cart.usecase.DeleteAllCartUseCase
 import tia.sarwoedhi.ecommerce.domain.cart.usecase.DeleteCartUseCase
 import tia.sarwoedhi.ecommerce.domain.cart.usecase.GetMyCartUseCase
 import tia.sarwoedhi.ecommerce.domain.cart.usecase.UpdateCartUseCase
+import tia.sarwoedhi.ecommerce.domain.order.model.request.OrderRequest
+import tia.sarwoedhi.ecommerce.domain.order.usecase.InsertOrderUseCase
+import java.util.Date
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,7 +32,9 @@ class CartViewModel @Inject constructor(
     private val deleteCartUseCase: DeleteCartUseCase,
     private val getMyCartUseCase: GetMyCartUseCase,
     private val updateCartUseCase: UpdateCartUseCase,
-    private val getProfileUseCase: GetProfileUseCase
+    private val getProfileUseCase: GetProfileUseCase,
+    private val insertOrderUseCase: InsertOrderUseCase,
+    private val deleteAllCartUseCase: DeleteAllCartUseCase,
 ) : ViewModel() {
 
     private val _listCart: MutableStateFlow<UiState<List<CartEntity>>> =
@@ -44,6 +52,16 @@ class CartViewModel @Inject constructor(
 
     val updateCart: StateFlow<UiState<Unit>>
         get() = _updateCart.stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = UiState.Loading
+        )
+
+    private val _updateOrder: MutableStateFlow<UiState<Unit>> =
+        MutableStateFlow(UiState.Loading)
+
+    val updateOrder: StateFlow<UiState<Unit>>
+        get() = _updateOrder.stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
             initialValue = UiState.Loading
@@ -78,7 +96,7 @@ class CartViewModel @Inject constructor(
                 products = listOf(product)
             )
 
-            if(product.quantity > 0){
+            if (product.quantity > 0) {
                 when (val result = updateCartUseCase.invoke(request)) {
                     is DomainWrapper.Error -> _updateCart.value =
                         (UiState.Error(result.statusResponse.orEmpty()))
@@ -87,7 +105,7 @@ class CartViewModel @Inject constructor(
                         _updateCart.value = UiState.Success(result.data)
                     }
                 }
-            }else{
+            } else {
                 when (val result = deleteCartUseCase.invoke(request)) {
                     is DomainWrapper.Error -> _updateCart.value =
                         (UiState.Error(result.statusResponse.orEmpty()))
@@ -101,5 +119,25 @@ class CartViewModel @Inject constructor(
         }
     }
 
+    fun checkout(listCart: List<CartEntity>) {
+        val request = generateOrderRequest(listCart)
+        viewModelScope.launch(Dispatchers.IO) {
+            _updateOrder.value = UiState.Loading
+            when (val result = insertOrderUseCase.invoke(request)) {
+                is DomainWrapper.Error -> _updateOrder.value =
+                    (UiState.Error(result.statusResponse.orEmpty()))
 
+                is DomainWrapper.Success -> {
+                    deleteAllCartUseCase.invoke()
+                    _updateOrder.value = UiState.Success(result.data)
+                }
+            }
+        }
+    }
+
+    private fun generateOrderRequest(listCart: List<CartEntity>): OrderRequest {
+        val total = listCart.sumOf { (it.quantity ?: 0) * (it.price ?: 0.0) }
+        val jsonProducts = Json.encodeToString(listCart)
+        return OrderRequest(product = jsonProducts, orderTime = Date().time, totalAmount = total)
+    }
 }

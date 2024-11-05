@@ -1,4 +1,4 @@
-package tia.sarwoedhi.ecommerce.feat.cart.adapter
+package tia.sarwoedhi.ecommerce.feat.receipt.adapter
 
 
 import android.view.LayoutInflater
@@ -11,15 +11,9 @@ import tia.sarwoedhi.ecommerce.R
 import tia.sarwoedhi.ecommerce.databinding.ItemCartBinding
 import tia.sarwoedhi.ecommerce.domain.cart.model.response.CartEntity
 
-class CartAdapter : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
+class OrderAdapter : RecyclerView.Adapter<OrderAdapter.CartViewHolder>() {
 
-    private val cartList: MutableList<CartEntity> = mutableListOf()
-
-    private lateinit var onPlusItemClickCallback: OnItemClickCallback
-
-    fun setOnPlusItemClickCallback(onItemClickCallback: OnItemClickCallback) {
-        this.onPlusItemClickCallback = onItemClickCallback
-    }
+    private val orderList: MutableList<CartEntity> = mutableListOf()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -29,18 +23,18 @@ class CartAdapter : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
         return CartViewHolder(binding)
     }
 
-    fun getListData() = cartList
+    fun getListData() = orderList
 
-    override fun getItemCount(): Int = cartList.size
+    override fun getItemCount(): Int = orderList.size
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
-        val cart = cartList[position]
+        val cart = orderList[position]
         holder.bind(cart)
     }
 
     fun updateData(list: List<CartEntity>) {
-        cartList.clear()
-        cartList.addAll(list)
+        orderList.clear()
+        orderList.addAll(list)
         notifyDataSetChanged()
     }
 
@@ -54,22 +48,12 @@ class CartAdapter : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
             binding.txtPrice.text =
                 itemView.context.getString(R.string.price, data.price.toString())
             binding.labelImgNotAvailable.isVisible = data.image?.isBlank() == true
+            binding.layoutCart.isVisible = false
             val image = data.image?.ifBlank { R.drawable.shape_img_not_available }
             Glide.with(binding.imgProduct.context)
                 .load(image)
                 .placeholder(R.drawable.shape_img_not_available)
                 .into(binding.imgProduct)
-            binding.btnPlusCart.setOnClickListener {
-                onPlusItemClickCallback.onPlusItem(data)
-            }
-            binding.btnMinusCart.setOnClickListener {
-                onPlusItemClickCallback.onMinusItem(data)
-            }
         }
     }
-}
-
-interface OnItemClickCallback {
-    fun onPlusItem(data: CartEntity)
-    fun onMinusItem(data: CartEntity)
 }

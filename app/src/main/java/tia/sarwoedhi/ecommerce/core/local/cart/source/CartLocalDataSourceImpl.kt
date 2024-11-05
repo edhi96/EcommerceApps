@@ -45,6 +45,15 @@ class CartLocalDataSourceImpl
         }
     }
 
+    override suspend fun deleteAll(): DataResult<Unit> {
+        return try {
+            dao.deleteAll()
+            DataResult.Success(Unit)
+        } catch (e: Exception) {
+            DataResult.Error(exception = e)
+        }
+    }
+
     override suspend fun selectByProductId(productId: Int): DataResult<TableCart> {
         return try {
             val result = dao.selectByProductId(productId)

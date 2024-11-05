@@ -15,4 +15,6 @@ interface CartRepository {
     suspend fun deleteCart(request: CartRequestEntity): DomainWrapper<Unit>
 
     suspend fun getCartByProductId(productId : Int): DomainWrapper<CartEntity>
+
+    suspend fun deleteAllCart(): DomainWrapper<Unit>
 }

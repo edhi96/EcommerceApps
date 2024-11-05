@@ -1,5 +1,8 @@
 package tia.sarwoedhi.ecommerce.domain.cart.model.response
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class CartEntity(
     val productId: Int? = 0,
     val category: String? = "",

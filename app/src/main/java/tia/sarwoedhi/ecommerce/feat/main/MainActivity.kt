@@ -1,6 +1,7 @@
 package tia.sarwoedhi.ecommerce.feat.main
 
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -26,6 +27,16 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        this.onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val navController = findNavController(R.id.nav_host_fragment)
+               if(navController.currentDestination?.label != "fragment_home"){
+                    navController.popBackStack()
+                }else{
+                    finishAndRemoveTask()
+                }
+            }
+        })
     }
 
     override fun onSupportNavigateUp(): Boolean {

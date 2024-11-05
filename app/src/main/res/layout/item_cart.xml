@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/imgProduct"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:contentDescription="@string/image_is_not_available"
             android:scaleType="centerInside"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,20 +47,22 @@
             android:id="@+id/txtTitle"
             style="@style/ListTitleStyle"
             android:layout_width="0dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
             android:ellipsize="end"
             android:maxLines="2"
+            app:layout_constraintStart_toEndOf="@id/imgProduct"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imgProduct"
+            app:layout_constraintTop_toTopOf="@id/imgProduct"
             tools:text="Title" />
 
         <TextView
             android:id="@+id/txtCategoryName"
             style="@style/ListTitleStyle"
-            android:layout_marginTop="10dp"
+            android:layout_width="0dp"
+            android:layout_marginTop="5dp"
             android:text="@string/dash_for_null"
             android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/txtTitle"
             app:layout_constraintTop_toBottomOf="@id/txtTitle"
             tools:text="Category" />
@@ -68,12 +70,12 @@
         <TextView
             android:id="@+id/txtPrice"
             style="@style/ListTitleStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_width="0dp"
+            android:layout_marginTop="5dp"
             android:text="@string/not_available_yet"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/txtTitle"
             app:layout_constraintTop_toBottomOf="@id/txtCategoryName"
             tools:text="Rp" />
 
@@ -84,7 +86,7 @@
             android:layout_marginTop="10dp"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/txtTitle"
             app:layout_constraintTop_toBottomOf="@+id/txtPrice"
             tools:visibility="visible">
 

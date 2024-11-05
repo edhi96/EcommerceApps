@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,7 +50,10 @@ class CartFragment : Fragment() {
 
     private fun initAction() {
         binding.topAppBar.imgBack.setOnClickListener {
-            findNavController().navigateUp()
+            findNavController().popBackStack()
+        }
+        binding.btnCheckout.setOnClickListener {
+            viewModel.checkout(adapterCart.getListData())
         }
     }
 
@@ -83,7 +87,6 @@ class CartFragment : Fragment() {
             this.adapter = adapterCart
             this.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-
         }
     }
 
@@ -95,8 +98,10 @@ class CartFragment : Fragment() {
             binding.progressBar.isVisible = state is UiState.Loading
             if (state is UiState.Success) {
                 if (state.data?.isNotEmpty() == true) {
+                    binding.btnCheckout.isEnabled = true
                     adapterCart.updateData(state.data)
                 } else {
+                    binding.btnCheckout.isEnabled = false
                     Toast.makeText(
                         requireContext(),
                         getString(R.string.cart_empty), Toast.LENGTH_LONG
@@ -118,6 +123,24 @@ class CartFragment : Fragment() {
                 Toast.makeText(requireContext(),
                     getString(R.string.success_updated_cart), Toast.LENGTH_SHORT).show()
                 viewModel.myCart()
+            }
+
+            if (state is UiState.Error) {
+                Toast.makeText(requireContext(), state.error, Toast.LENGTH_SHORT).show()
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+
+
+        viewModel.updateOrder.flowWithLifecycle(
+            viewLifecycleOwner.lifecycle,
+            Lifecycle.State.STARTED
+        ).onEach { state ->
+            binding.progressBar.isVisible = state is UiState.Loading
+            binding.btnCheckout.isEnabled  = state !is UiState.Loading
+            if (state is UiState.Success) {
+                Toast.makeText(requireContext(),
+                    getString(R.string.order_success), Toast.LENGTH_SHORT).show()
+                view?.findNavController()?.navigate(R.id.action_to_receiptFragment)
             }
 
             if (state is UiState.Error) {

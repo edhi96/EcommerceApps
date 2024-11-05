@@ -34,4 +34,10 @@ object DatabaseModule {
         return appDatabase.cartDao()
     }
 
+    @Provides
+    @Singleton
+    fun provideOrderDao(appDatabase: AppDatabase): OrdersDao {
+        return appDatabase.orderDao()
+    }
+
 }

@@ -81,8 +81,6 @@
         android:id="@+id/productDetailFragment"
         android:name="tia.sarwoedhi.ecommerce.feat.product_detail.ProductDetailFragment"
         android:label="fragment_product_detail"
-        app:popUpTo="@id/homeFragment"
-        app:popUpToInclusive="true"
         tools:layout="@layout/fragment_product_detail">
 
         <action
@@ -91,7 +89,7 @@
             app:enterAnim="@anim/animation_fade_in"
             app:exitAnim="@anim/wait_anim"
             app:popEnterAnim="@anim/wait_anim"
-            app:popExitAnim="@anim/animation_fade_out"/>
+            app:popExitAnim="@anim/animation_fade_out" />
 
         <action
             android:id="@+id/action_productDetailFragment_to_cartFragment"
@@ -107,9 +105,24 @@
         android:id="@+id/cartFragment"
         android:name="tia.sarwoedhi.ecommerce.feat.cart.CartFragment"
         android:label="fragment_cart"
-        app:popUpTo="@id/homeFragment"
-        app:popUpToInclusive="true"
         tools:layout="@layout/fragment_cart">
+        <action
+            android:id="@+id/action_to_receiptFragment"
+            app:destination="@id/receiptFragment"
+            app:enterAnim="@anim/animation_fade_in"
+            app:exitAnim="@anim/wait_anim"
+            app:popEnterAnim="@anim/wait_anim"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true"
+            app:popExitAnim="@anim/animation_fade_out" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/receiptFragment"
+        android:name="tia.sarwoedhi.ecommerce.feat.receipt.ReceiptFragment"
+        android:label="fragment_receipt"
+        tools:layout="@layout/fragment_receipt">
 
     </fragment>
 

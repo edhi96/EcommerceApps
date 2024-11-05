@@ -59,7 +59,7 @@ class ProductDetailFragment : Fragment() {
 
     private fun initAction() {
         binding.topAppBar.imgBack.setOnClickListener {
-            findNavController().navigateUp()
+            findNavController().popBackStack()
         }
         binding.topAppBar.imgProfile.setOnClickListener {
             ProfileDialogFragment.newInstance().apply {
@@ -85,6 +85,7 @@ class ProductDetailFragment : Fragment() {
             qty -= 1
             viewModel.updateCart(CartProductEntity(product?.id ?: 0, qty))
         }
+
     }
 
     private fun loadData() {
