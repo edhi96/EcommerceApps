@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -31,7 +30,7 @@ class ProductDetailFragment : Fragment() {
     private val binding get() = _binding!!
     private var product: ProductEntity? = null
     private val viewModel: ProductDetailViewModel by viewModels()
-    private var qty: Int = 1
+    private var qty: Int = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -68,12 +67,23 @@ class ProductDetailFragment : Fragment() {
             }
         }
         binding.topAppBar.imgCart.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.action_homeFragment_to_CartFragment)
+            view?.findNavController()?.navigate(R.id.action_productDetailFragment_to_cartFragment)
         }
         binding.btnAddCart.setOnClickListener {
             if (product != null) {
+                qty += 1
                 viewModel.postAddCart(CartProductEntity(product?.id ?: 0, qty))
             }
+        }
+
+        binding.btnPlusCart.setOnClickListener {
+            qty += 1
+            viewModel.updateCart(CartProductEntity(product?.id ?: 0, qty))
+        }
+
+        binding.btnMinusCart.setOnClickListener {
+            qty -= 1
+            viewModel.updateCart(CartProductEntity(product?.id ?: 0, qty))
         }
     }
 
@@ -96,6 +106,7 @@ class ProductDetailFragment : Fragment() {
                 .skipMemoryCache(true)
                 .placeholder(R.drawable.shape_img_not_available)
                 .into(binding.imgProduct)
+            viewModel.myCart(data.id)
         }
 
     }
@@ -106,9 +117,36 @@ class ProductDetailFragment : Fragment() {
             Lifecycle.State.STARTED
         ).onEach { state ->
             if (state is UiState.Success && state.data != null) {
-                Toast.makeText(requireContext(), "Success Added Cart", Toast.LENGTH_SHORT).show()
+                viewModel.myCart(product?.id ?: 0)
             }
 
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+
+        viewModel.myCartState.flowWithLifecycle(
+            viewLifecycleOwner.lifecycle,
+            Lifecycle.State.STARTED
+        ).onEach { state ->
+            binding.btnAddCart.isVisible =
+                !(state is UiState.Success && (state.data?.quantity ?: 0) > 0)
+            binding.layoutCart.isVisible =
+                state is UiState.Success && (state.data?.quantity ?: 0) > 0
+            if (state is UiState.Success && (state.data?.quantity ?: 0) > 0) {
+                qty = state.data?.quantity ?: 0
+                binding.txtQuantity.text = qty.toString()
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+
+        viewModel.updateCart.flowWithLifecycle(
+            viewLifecycleOwner.lifecycle,
+            Lifecycle.State.STARTED
+        ).onEach { state ->
+
+            if (state is UiState.Success && state.data != null) {
+                binding.layoutCart.isVisible = state.data > 0
+                binding.btnAddCart.isVisible = state.data < 1
+                val newQty = state.data
+                binding.txtQuantity.text = (newQty).toString()
+            }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
